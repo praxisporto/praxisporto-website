@@ -1,0 +1,16 @@
+---
+// Demo sign-up: e-mail only, the same everywhere a form appears.
+// Sends JSON to DEMO_SIGNUP_URL; without an endpoint the form says that it is not connected yet.
+import { DEMO_SIGNUP_URL } from "../config";
+interface Props { id?: string }
+const { id = "demo" } = Astro.props;
+---
+<form class="stack" style="width:100%" data-signup data-endpoint={DEMO_SIGNUP_URL} novalidate>
+  <h2 style="font-size:1.4rem">Demo ausprobieren</h2>
+  <div class="field"><label for={`${id}-email`}>E-Mail</label><input id={`${id}-email`} name="email" type="email" autocomplete="email" placeholder="name@praxis.de" required maxlength="254" /></div>
+  <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+  <button class="btn" type="submit">Demo starten</button>
+  <p class="micro">Kostenlos, ohne Zahlungsdaten. Mit dem Start gelten die <a href="/nutzungsbedingungen/">Nutzungsbedingungen</a> und die <a href="/datenschutz/">Datenschutzerklärung</a>.</p>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<script src="../scripts/forms.ts"></script>

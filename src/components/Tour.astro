@@ -1,0 +1,32 @@
+---
+// Tour in three steps for phones (the demo itself needs the practice PC).
+import AppWindow from "./mocks/AppWindow.astro";
+import LabelMock from "./mocks/LabelMock.astro";
+import ProtocolMock from "./mocks/ProtocolMock.astro";
+const captions = ["Der Auftrag kommt aus dem PVS, die Adresse ist schon eingetragen. Sie wählen nur das Format.", "Kaufen und drucken: Marke und Adresse auf einem Etikett.", "Jede Marke steht im Protokoll, ohne Empfängerdaten."];
+---
+<div class="tour" data-tour id="rundgang">
+  <div class="scene mesh" aria-live="polite">
+    <div data-step="0"><AppWindow /></div>
+    <div data-step="1" hidden><LabelMock /></div>
+    <div data-step="2" hidden><ProtocolMock /></div>
+  </div>
+  <p><b data-count>Schritt 1 von 3</b><br /><span data-caption>{captions[0]}</span></p>
+  <div class="ctl"><button class="btn ghost sm" type="button" data-prev disabled>Zurück</button><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><button class="btn sm" type="button" data-next>Weiter</button></div>
+</div>
+<script define:vars={{ captions }}>
+  const tour = document.querySelector("[data-tour]");
+  let i = 0;
+  const steps = tour.querySelectorAll("[data-step]");
+  const dots = tour.querySelectorAll(".dots i");
+  const show = () => {
+    steps.forEach((s, j) => (s.hidden = j !== i));
+    dots.forEach((d, j) => d.classList.toggle("on", j === i));
+    tour.querySelector("[data-count]").textContent = `Schritt ${i + 1} von ${steps.length}`;
+    tour.querySelector("[data-caption]").textContent = captions[i];
+    tour.querySelector("[data-prev]").disabled = i === 0;
+    tour.querySelector("[data-next]").disabled = i === steps.length - 1;
+  };
+  tour.querySelector("[data-prev]").addEventListener("click", () => { i = Math.max(0, i - 1); show(); });
+  tour.querySelector("[data-next]").addEventListener("click", () => { i = Math.min(steps.length - 1, i + 1); show(); });
+</script>

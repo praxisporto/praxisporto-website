@@ -1,0 +1,46 @@
+---
+import Base from "../../layouts/Base.astro";
+import PageHero from "../../components/PageHero.astro";
+import DemoActions from "../../components/DemoActions.astro";
+import Icon from "../../components/Icon.astro";
+import Scenes from "../../components/Scenes.astro";
+import Fields from "../../components/Fields.astro";
+import Faq from "../../components/Faq.astro";
+import Cta from "../../components/Cta.astro";
+import LabelMock from "../../components/mocks/LabelMock.astro";
+import { FIELDS, type Field } from "../../data/fields";
+import { pick } from "../../data/faq";
+
+export function getStaticPaths() {
+  return FIELDS.map((field) => ({ params: { slug: field.slug }, props: { field } }));
+}
+const { field } = Astro.props as { field: Field };
+const faq = pick("pvs", "printer", "data", "post");
+const url = (p: string) => new URL(p, Astro.site).toString();
+---
+<Base
+  title={`${field.title} | Praxisporto`}
+  description={field.description}
+  schema={[
+    { "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Lösungen", item: url("/loesungen/") },
+      { "@type": "ListItem", position: 2, name: field.name, item: url(`/loesungen/${field.slug}/`) },
+    ] },
+  ]}
+>
+  <PageHero eyebrow={field.name} title={`${field.title.split(":")[0]}.`} lead={field.lead}>
+    <nav slot="crumbs" class="crumbs" aria-label="Brotkrumen"><a href="/loesungen/">Lösungen</a><span aria-hidden="true">/</span><span aria-current="page">{field.name}</span></nav>
+    <DemoActions />
+    <LabelMock slot="visual" />
+  </PageHero>
+  <section class="sec">
+    <div class="wrap">
+      <div class="head center"><span class="eyebrow">Typische Post</span><h2>Diese Briefe gehen bei Ihnen raus.</h2></div>
+      <div class="grid3">{field.letters.map((l) => <div class="card"><span class={`ic ${field.tone}`}><Icon name={l.icon} /></span><h3>{l.title}</h3><p>{l.text}</p></div>)}</div>
+    </div>
+  </section>
+  <Scenes upto={1} />
+  <Fields exclude={field.slug} title="Andere Fachrichtungen" />
+  <Faq items={faq} />
+  <Cta />
+</Base>

@@ -1,0 +1,11 @@
+---
+import type { Faq as FaqItem } from "../data/faq";
+interface Props { items: FaqItem[]; title?: string }
+const { items, title = "Häufige Fragen" } = Astro.props;
+---
+<section class="sec">
+  <div class="wrap split top">
+    <div class="stack"><span class="eyebrow">Fragen und Antworten</span><h2>{title}</h2><p class="lead">Ihre Frage ist nicht dabei? Schreiben Sie uns.</p></div>
+    <div class="faq">{items.map((f, i) => <details open={i === 0}><summary>{f.q}</summary><p>{f.a}</p></details>)}</div>
+  </div>
+</section>

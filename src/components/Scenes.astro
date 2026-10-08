@@ -1,0 +1,12 @@
+---
+// The three product topics used on the start page and the function page.
+import Scene from "./Scene.astro";
+import OrderMock from "./mocks/OrderMock.astro";
+import LabelMock from "./mocks/LabelMock.astro";
+import ProtocolMock from "./mocks/ProtocolMock.astro";
+interface Props { upto?: number }
+const { upto = 3 } = Astro.props;
+---
+{upto >= 1 && <Scene id="auftrag" eyebrow="Auftrag aus dem PVS" title="Die Adresse ist schon da." text="Das PVS übergibt den Patientendatensatz, Praxisporto öffnet den Auftrag mit ausgefüllter Adresse. Sie wählen nur noch das Format." checks={["Kein Abtippen, keine Tippfehler", "Für jedes PVS mit GDT-Schnittstelle", "Mehrere Arbeitsplätze, ein Porto-Konto"]}><OrderMock /></Scene>}
+{upto >= 2 && <Scene id="etikett" flip eyebrow="Marke und Adresse" title="Immer das richtige Porto, auf einem Etikett." text="Format wählen, der Preis steht dabei, drucken." checks={["Standard-, Kompakt-, Groß- und Maxibrief, Postkarte", "Einschreiben, Einschreiben Einwurf und Rückschein", "Etikettengröße aus einer Liste, kein Treiber-Gefummel"]}><LabelMock /></Scene>}
+{upto >= 3 && <Scene id="protokoll" eyebrow="Nachweis und Kontrolle" title="Jede Marke im Protokoll." text="Für die Buchhaltung als CSV, ohne Empfängerdaten." checks={["Datum, Produkt und Preis je Marke", "Tageslimits für Praxisinhaber", "Export für Steuerberatung und Buchhaltung"]}><ProtocolMock /></Scene>}

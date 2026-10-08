@@ -1,0 +1,15 @@
+---
+// Before / after: the handwork that disappears.
+import Icon from "./Icon.astro";
+const before = ["Adresse abtippen oder abschreiben", "Porto in der Preisliste nachschlagen", "Marke suchen oder zum Schalter gehen", "Marke aufkleben"];
+const after = ["Auftrag öffnen, die Adresse ist schon da", "Format wählen, der Preis steht dabei", "Etikett aus dem Drucker aufkleben"];
+---
+<section class="sec">
+  <div class="wrap">
+    <div class="head center"><span class="eyebrow">Der Unterschied</span><h2>Jeder Brief kostet heute mehrere Handgriffe.</h2></div>
+    <div class="grid2">
+      <div class="card"><h3>Von Hand</h3><ul class="vs no">{before.map((t) => <li><Icon name="close" />{t}</li>)}</ul></div>
+      <div class="card white pick"><h3>Mit Praxisporto</h3><ul class="vs yes">{after.map((t) => <li><Icon name="check" />{t}</li>)}</ul></div>
+    </div>
+  </div>
+</section>

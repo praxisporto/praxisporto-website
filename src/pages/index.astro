@@ -1,0 +1,28 @@
+---
+import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import Compare from "../components/Compare.astro";
+import Errors from "../components/Errors.astro";
+import Privacy from "../components/Privacy.astro";
+import InstantDemo from "../components/InstantDemo.astro";
+import Faq from "../components/Faq.astro";
+import StickyBar from "../components/StickyBar.astro";
+import { pick } from "../data/faq";
+const faq = pick("demo", "data", "printer");
+---
+<Base banner={false}
+  title="Praxisporto: Briefe frankieren in drei Klicks, direkt aus dem PVS"
+  description="Praxisporto übernimmt die Adresse aus dem PVS und druckt Porto und Anschrift auf ein Etikett. Schneller, ohne Tippfehler, mit dem passenden Porto. Demo sofort ausprobieren."
+  schema={[
+    { "@type": "SoftwareApplication", name: "Praxisporto", applicationCategory: "BusinessApplication", operatingSystem: "Windows", description: "Porto und Adresse auf einem Etikett, direkt aus dem Praxisverwaltungssystem." },
+    { "@type": "FAQPage", mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
+  ]}
+>
+  <Hero />
+  <Compare />
+  <Errors />
+  <Privacy />
+  <InstantDemo />
+  <Faq items={faq} />
+  <StickyBar />
+</Base>

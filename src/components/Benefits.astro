@@ -1,0 +1,14 @@
+---
+import Icon from "./Icon.astro";
+const items = [
+  { icon: "clock", tone: "blue", title: "Einrichtung in Minuten", text: "Für den Praxisbetrieb: Programm installieren, Kopplungscode eingeben, Drucker wählen." },
+  { icon: "refresh", tone: "petrol", title: "Fehldruck ohne Verlust", text: "Dieselbe Marke noch einmal drucken. Nie gedruckte Marken werden nach sieben Tagen erstattet." },
+  { icon: "chart", tone: "coral", title: "Kosten im Griff", text: "Tageslimits je Arbeitsplatz und Mitarbeitende, jede Marke im Protokoll." },
+] as const;
+---
+<section class="sec tint">
+  <div class="wrap">
+    <div class="head center"><span class="eyebrow">Warum Praxisporto</span><h2>Weniger Handarbeit, mehr Ruhe am Tresen.</h2></div>
+    <div class="grid3">{items.map((x) => <div class="card white"><span class={`ic ${x.tone}`}><Icon name={x.icon} /></span><h3>{x.title}</h3><p>{x.text}</p></div>)}</div>
+  </div>
+</section>

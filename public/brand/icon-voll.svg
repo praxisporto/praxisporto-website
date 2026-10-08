@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256.00 256.00" width="256" height="256">
+<title>Praxisporto Icon</title>
+<g transform="translate(5.08 28.47) scale(0.9173)">
+<rect x="78" y="156" width="28" height="18" fill="#163C7A"/>
+<rect x="56" y="170" width="72" height="13" rx="6.5" fill="#14305C"/>
+<rect x="16" y="46" width="150" height="112" rx="20" fill="#1F4E9E"/>
+<rect x="28" y="58" width="126" height="86" rx="12" fill="#EAF2FF"/>
+<circle cx="91" cy="151" r="2.6" fill="#7FE3B5"/>
+<path d="M64 94 Q72 84 80 94" fill="none" stroke="#14305C" stroke-width="5" stroke-linecap="round"/>
+<path d="M102 94 Q110 84 118 94" fill="none" stroke="#14305C" stroke-width="5" stroke-linecap="round"/>
+<circle cx="60" cy="103" r="5.5" fill="#E4574F" fill-opacity="0.35"/>
+<circle cx="122" cy="103" r="5.5" fill="#E4574F" fill-opacity="0.35"/>
+<ellipse cx="96" cy="115" rx="12" ry="9" fill="#14305C"/>
+<g transform="translate(214 78) rotate(-14)">
+<path d="M-30.00 -37.00 L-27.20 -37.00 A3.2 3.2 0 0 0 -20.80 -37.00 L-19.20 -37.00 A3.2 3.2 0 0 0 -12.80 -37.00 L-11.20 -37.00 A3.2 3.2 0 0 0 -4.80 -37.00 L-3.20 -37.00 A3.2 3.2 0 0 0 3.20 -37.00 L4.80 -37.00 A3.2 3.2 0 0 0 11.20 -37.00 L12.80 -37.00 A3.2 3.2 0 0 0 19.20 -37.00 L20.80 -37.00 A3.2 3.2 0 0 0 27.20 -37.00 L30.00 -37.00 L30.00 -35.20 A3.2 3.2 0 0 0 30.00 -28.80 L30.00 -27.20 A3.2 3.2 0 0 0 30.00 -20.80 L30.00 -19.20 A3.2 3.2 0 0 0 30.00 -12.80 L30.00 -11.20 A3.2 3.2 0 0 0 30.00 -4.80 L30.00 -3.20 A3.2 3.2 0 0 0 30.00 3.20 L30.00 4.80 A3.2 3.2 0 0 0 30.00 11.20 L30.00 12.80 A3.2 3.2 0 0 0 30.00 19.20 L30.00 20.80 A3.2 3.2 0 0 0 30.00 27.20 L30.00 28.80 A3.2 3.2 0 0 0 30.00 35.20 L30.00 37.00 L27.20 37.00 A3.2 3.2 0 0 0 20.80 37.00 L19.20 37.00 A3.2 3.2 0 0 0 12.80 37.00 L11.20 37.00 A3.2 3.2 0 0 0 4.80 37.00 L3.20 37.00 A3.2 3.2 0 0 0 -3.20 37.00 L-4.80 37.00 A3.2 3.2 0 0 0 -11.20 37.00 L-12.80 37.00 A3.2 3.2 0 0 0 -19.20 37.00 L-20.80 37.00 A3.2 3.2 0 0 0 -27.20 37.00 L-30.00 37.00 L-30.00 35.20 A3.2 3.2 0 0 0 -30.00 28.80 L-30.00 27.20 A3.2 3.2 0 0 0 -30.00 20.80 L-30.00 19.20 A3.2 3.2 0 0 0 -30.00 12.80 L-30.00 11.20 A3.2 3.2 0 0 0 -30.00 4.80 L-30.00 3.20 A3.2 3.2 0 0 0 -30.00 -3.20 L-30.00 -4.80 A3.2 3.2 0 0 0 -30.00 -11.20 L-30.00 -12.80 A3.2 3.2 0 0 0 -30.00 -19.20 L-30.00 -20.80 A3.2 3.2 0 0 0 -30.00 -27.20 L-30.00 -28.80 A3.2 3.2 0 0 0 -30.00 -35.20 Z" fill="#FFFFFF" stroke="#14305C" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="-23" y="-30" width="46" height="60" rx="2" fill="#1D9A8A"/>
+<polyline points="-17,6 -8,6 -4,-7 1,15 6,-1 9,6 17,6" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<path d="M92 108 C120 110 150 106 178 99 C190 96 198 106 190 114 C162 126 122 128 92 122 Z" fill="#E4574F"/>
+<path d="M102 115 C128 117 154 113 176 106" fill="none" stroke="#000000" stroke-opacity="0.18" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M199 129 L194 137" fill="none" stroke="#14305C" stroke-opacity="0.45" stroke-width="3" stroke-linecap="round"/>
+<path d="M210 127 L209 136" fill="none" stroke="#14305C" stroke-opacity="0.45" stroke-width="3" stroke-linecap="round"/>
+</g>
+</svg>

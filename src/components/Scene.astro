@@ -1,0 +1,12 @@
+---
+// One topic with a large product picture (slot) and three check marks.
+import Icon from "./Icon.astro";
+interface Props { eyebrow: string; title: string; text: string; checks: string[]; flip?: boolean; id?: string }
+const { eyebrow, title, text, checks, flip = false, id } = Astro.props;
+---
+<section class="sec" id={id}>
+  <div class={`wrap split${flip ? " flip" : ""}`}>
+    <div class="stack"><span class="eyebrow">{eyebrow}</span><h2>{title}</h2><p class="lead">{text}</p><ul class="checks">{checks.map((c) => <li><Icon name="check" />{c}</li>)}</ul></div>
+    <div class="visual mesh"><slot /></div>
+  </div>
+</section>

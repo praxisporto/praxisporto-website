@@ -1,0 +1,12 @@
+---
+// Top of an inner page: eyebrow, H1, lead; optional visual on the right.
+interface Props { eyebrow: string; title: string; lead: string }
+const { eyebrow, title, lead } = Astro.props;
+const hasVisual = Astro.slots.has("visual");
+---
+<section class="herobox pad">
+  <div class={`wrap${hasVisual ? " split" : ""}`}>
+    <div class="stack"><slot name="crumbs" /><span class="eyebrow">{eyebrow}</span><h1>{title}</h1><p class="lead">{lead}</p><slot /></div>
+    {hasVisual && <div class="visual mesh"><slot name="visual" /></div>}
+  </div>
+</section>

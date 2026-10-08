@@ -1,0 +1,36 @@
+---
+import Icon from "./Icon.astro";
+import { APP_URL, NAV } from "../config";
+const path = Astro.url.pathname;
+---
+<header class="nav" data-nav>
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Praxisporto, zur Startseite"><img class="bi" src="/brand/icon-kompakt.svg" alt="" width="34" height="34" /><img class="bw" src="/brand/praxisporto-wortmarke.svg" alt="Praxisporto" width="112" height="25" /></a>
+    <nav class="links" aria-label="Hauptmenü">{NAV.map((n) => <a href={n.href} aria-current={path.startsWith(n.href) ? "page" : undefined}>{n.label}</a>)}</nav>
+    <div class="end">
+      <a class="login" href={`${APP_URL}/admin`}>Anmelden</a>
+      <a class="btn sm" href="/demo/" data-demo><span class="long">Demo ausprobieren</span><span class="short">Demo</span></a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menü öffnen" data-burger><Icon name="menu" /></button>
+    </div>
+  </div>
+  <nav class="menu" id="menu" aria-label="Menü" data-open="false">
+    {NAV.map((n) => <a href={n.href}>{n.label}</a>)}
+    <a href={`${APP_URL}/admin`}>Anmelden</a>
+  </nav>
+</header>
+<script>
+  // Menu on narrow screens; a line under the bar once the page scrolls.
+  const nav = document.querySelector<HTMLElement>("[data-nav]")!;
+  const burger = nav.querySelector<HTMLButtonElement>("[data-burger]")!;
+  const menu = nav.querySelector<HTMLElement>("#menu")!;
+  burger.addEventListener("click", () => {
+    const open = menu.dataset.open !== "true";
+    menu.dataset.open = String(open);
+    burger.setAttribute("aria-expanded", String(open));
+    burger.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
+  });
+  const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 8);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+</script>
+<script src="../scripts/demo-route.ts"></script>

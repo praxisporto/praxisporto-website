@@ -1,0 +1,16 @@
+---
+// The way to the demo: on the computer the demo page, on phones the tour and the e-mail link.
+import Icon from "./Icon.astro";
+interface Props { light?: boolean; secondary?: { href: string; label: string } }
+const { light = false, secondary = { href: "/funktionen/", label: "So funktioniert’s" } } = Astro.props;
+---
+<div class="actions only-desktop">
+  <a class={`btn${light ? " light" : ""}`} href="/demo/" data-demo>Demo ausprobieren <Icon name="arrow" /></a>
+  <a class="link" href={secondary.href}>{secondary.label} <Icon name="arrow" /></a>
+</div>
+<p class="micro demo-note only-desktop">Sofort selbst ausprobieren: ohne Termin, ohne Telefonat.</p>
+<div class="actions only-mobile">
+  <a class={`btn${light ? " light" : ""}`} href="/demo-am-computer/#rundgang">Rundgang ansehen</a>
+  <a class="link" href="/demo-am-computer/#link">Demo-Link per E-Mail <Icon name="arrow" /></a>
+</div>
+<p class="micro demo-note only-mobile">Kein Termin, kein Telefonat: Sie probieren selbst aus.</p>

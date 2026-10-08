@@ -1,0 +1,15 @@
+---
+import { CONTACT_MAIL } from "../config";
+import { FIELDS } from "../data/fields";
+---
+<footer class="footer">
+  <div class="wrap">
+    <div class="grid">
+      <div class="stack" style="gap:.8rem"><a class="brand" href="/" aria-label="Praxisporto, zur Startseite"><img class="bi" src="/brand/icon-kompakt.svg" alt="" width="34" height="34" loading="lazy" /><img class="bw" src="/brand/praxisporto-wortmarke.svg" alt="Praxisporto" width="112" height="25" loading="lazy" /></a><p class="micro">INTERNETMARKE für Arztpraxen, direkt aus dem PVS.</p>{CONTACT_MAIL && <p class="micro">{CONTACT_MAIL}</p>}</div>
+      <nav aria-label="Produkt"><h2>Produkt</h2><a href="/funktionen/">Funktionen</a><a href="/preise/">Preise</a><a href="/datenschutz-und-sicherheit/">Datenschutz und Sicherheit</a><a href="/demo/" data-demo>Demo ausprobieren</a></nav>
+      <nav aria-label="Lösungen"><h2>Lösungen</h2>{FIELDS.map((f) => <a href={`/loesungen/${f.slug}/`}>{f.name}</a>)}</nav>
+      <nav aria-label="Ratgeber"><h2>Ratgeber</h2><a href="/ratgeber/internetmarke-drucken/">INTERNETMARKE drucken</a><a href="/ratgeber/porto-2026/">Porto 2026</a><a href="/ratgeber/datenschutz-postversand/">Datenschutz beim Versand</a><a href="/ratgeber/">Alle Artikel</a></nav>
+    </div>
+    <div class="base"><span>© {new Date().getFullYear()} Praxisporto</span><span class="legal"><a href="/impressum/">Impressum</a><a href="/datenschutz/">Datenschutz</a><a href="/nutzungsbedingungen/">Nutzungsbedingungen</a></span></div>
+  </div>
+</footer>

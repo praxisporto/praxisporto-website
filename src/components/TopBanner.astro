@@ -1,0 +1,9 @@
+---
+// Slim demo reminder under the navigation on inner pages; can be closed for the visit.
+import Icon from "./Icon.astro";
+---
+<div class="topbanner" data-topbanner hidden>
+  <p><strong>Demo sofort ausprobieren:</strong> ohne Termin, ohne Telefonat, kostenlos. <a href="/demo/" data-demo>Jetzt starten <Icon name="arrow" /></a></p>
+  <button type="button" class="x" aria-label="Hinweis schließen" data-topbanner-close><Icon name="close" /></button>
+</div>
+<script src="../scripts/banner.ts"></script>

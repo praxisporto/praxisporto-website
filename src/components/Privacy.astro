@@ -1,0 +1,17 @@
+---
+// The privacy proof: what stays in the practice, what goes to the server.
+import Icon from "./Icon.astro";
+interface Props { link?: boolean }
+const { link = true } = Astro.props;
+---
+<section class="sec dark" id="datenschutz">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow">Datenschutz von Anfang an</span><h2>Die Adresse verlässt den Praxis-PC nicht.</h2><p class="lead wide">Praxisporto setzt Marke und Adresse auf dem Praxis-PC zusammen. Der Server erfährt nur Produkt, Anzahl und Auflösung und liefert das Markenbild zurück. Ihr PVS und Ihr Etikettendrucker bleiben, wie sie sind.</p></div>
+    <figure class="proof" aria-label="Datenfluss: Adresse bleibt in der Praxis, der Server erhält nur Produkt, Anzahl und Auflösung">
+      <div class="zone in"><span class="zl">Bleibt in der Praxis</span><div class="nd">PVS<small>Patientendaten und Adresse</small></div><div class="ar" aria-hidden="true">↓</div><div class="nd hl">Praxis-PC<small>setzt Marke und Adresse zusammen</small></div><div class="ar" aria-hidden="true">↓</div><div class="nd">Etikettendrucker<small>fertiges Etikett</small></div></div>
+      <div class="wire"><div class="msg">Produkt, Anzahl, Auflösung →</div><div class="msg back">← Markenbild</div></div>
+      <div class="zone out"><span class="zl">Server</span><div class="nd">Praxisporto-Server<small>in Frankreich (EU) gehostet, kauft die Marke bei der Deutschen Post</small></div><p class="no">Keine Namen, keine Adressen</p></div>
+    </figure>
+    {link && <p style="margin-top:2rem"><a class="link" href="/datenschutz-und-sicherheit/">Mehr zu Datenschutz und Sicherheit <Icon name="arrow" /></a></p>}
+  </div>
+</section>

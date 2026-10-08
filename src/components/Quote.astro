@@ -1,0 +1,16 @@
+---
+// A customer voice. Rendered only when there is a real, approved one (data/proof.ts).
+import { TESTIMONIALS } from "../data/proof";
+interface Props { index?: number }
+const t = TESTIMONIALS[Astro.props.index ?? 0];
+---
+{t && (
+  <section class="sec">
+    <div class="wrap">
+      <figure class="quotecard">
+        {t.photo ? <img class="avatar" src={t.photo} alt="" width="96" height="96" loading="lazy" /> : <span class="avatar" aria-hidden="true">{t.initials}</span>}
+        <div class="stack"><blockquote>„{t.quote}“</blockquote><figcaption class="micro"><b style="color:var(--ink)">{t.name}</b> · {t.role}</figcaption></div>
+      </figure>
+    </div>
+  </section>
+)}

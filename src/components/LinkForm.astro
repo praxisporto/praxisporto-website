@@ -1,0 +1,13 @@
+---
+// Phones: e-mail address only, we send the link to open the demo on the computer.
+import { DEMO_LINK_URL } from "../config";
+interface Props { id?: string }
+const { id = "link" } = Astro.props;
+---
+<form class="stack" style="width:100%" data-linkform data-endpoint={DEMO_LINK_URL} novalidate>
+  <div class="inline-form"><label class="sr-only" for={`${id}-email`}>E-Mail</label><input id={`${id}-email`} name="email" type="email" autocomplete="email" placeholder="E-Mail der Praxis" required maxlength="254" /><button class="btn" type="submit">Link senden</button></div>
+  <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+  <p class="micro">Kostenlos. Wir schicken Ihnen den Link per E-Mail. <a href="/datenschutz/">Datenschutz</a></p>
+  <p class="form-status" role="status" aria-live="polite"></p>
+</form>
+<script src="../scripts/forms.ts"></script>

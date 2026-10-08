@@ -1,0 +1,29 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import Privacy from "../components/Privacy.astro";
+import Icon from "../components/Icon.astro";
+import Faq from "../components/Faq.astro";
+import Cta from "../components/Cta.astro";
+import { pick } from "../data/faq";
+const points = [
+  { icon: "lock", title: "Adresse bleibt am PC", text: "Name und Anschrift kommen vom PVS auf den Arbeitsplatz und gehen von dort direkt an den Drucker." },
+  { icon: "plug", title: "Server in Frankreich", text: "Praxisporto wird in Frankreich und damit innerhalb der EU gehostet. Patientendaten liegen dort nicht." },
+  { icon: "shield", title: "Gekoppelte Arbeitsplätze", text: "Nur Rechner, die die Praxisleitung mit einem Kopplungscode freigegeben hat, können Marken kaufen." },
+  { icon: "users", title: "Rollen und Tageslimits", text: "Wer wie viel Porto am Tag drucken darf, legt die Praxisleitung je Person und je Arbeitsplatz fest." },
+  { icon: "list", title: "Protokoll ohne Empfänger", text: "Das Druckprotokoll enthält Datum, Produkt und Preis, aber keine Namen und keine Adressen." },
+] as const;
+const faq = pick("data", "post", "install");
+---
+<Base title="Datenschutz und Sicherheit | Praxisporto" description="Bei Praxisporto bleibt die Patientenadresse auf dem Praxis-PC. Der Server erfährt nur Produkt, Anzahl und Auflösung. So schützt Praxisporto Ihre Daten.">
+  <PageHero eyebrow="Datenschutz und Sicherheit" title="Die Adresse Ihrer Patienten verlässt die Praxis nicht." lead="Praxisporto braucht für den Kauf einer Marke keine Patientendaten. Name und Anschrift werden erst am Arbeitsplatz mit der Marke auf das Etikett gedruckt." />
+  <Privacy link={false} />
+  <section class="sec">
+    <div class="wrap">
+      <div class="head center"><span class="eyebrow">Im Überblick</span><h2>Sicherheit, die im Alltag nicht stört.</h2></div>
+      <div class="grid2">{points.map((p) => <div class="card"><span class="ic"><Icon name={p.icon} /></span><h3>{p.title}</h3><p>{p.text}</p></div>)}</div>
+    </div>
+  </section>
+  <Faq items={faq} />
+  <Cta />
+</Base>

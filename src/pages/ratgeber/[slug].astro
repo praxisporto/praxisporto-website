@@ -1,0 +1,59 @@
+---
+import Base from "../../layouts/Base.astro";
+import ArticleCards from "../../components/ArticleCards.astro";
+import DemoActions from "../../components/DemoActions.astro";
+import Cta from "../../components/Cta.astro";
+import { getCollection, render, type CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("ratgeber");
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+const { post } = Astro.props as { post: CollectionEntry<"ratgeber"> };
+const { Content, headings } = await render(post);
+const d = post.data;
+const date = (x: Date) => x.toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric" });
+const url = (p: string) => new URL(p, Astro.site).toString();
+const schema: object[] = [
+  { "@type": "Article", headline: d.title, description: d.description, datePublished: d.published.toISOString(), dateModified: (d.updated ?? d.published).toISOString(), author: { "@type": "Organization", name: "Praxisporto" }, publisher: { "@type": "Organization", name: "Praxisporto" }, mainEntityOfPage: url(`/ratgeber/${post.id}/`), inLanguage: "de-DE" },
+  { "@type": "BreadcrumbList", itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Ratgeber", item: url("/ratgeber/") },
+    { "@type": "ListItem", position: 2, name: d.title, item: url(`/ratgeber/${post.id}/`) },
+  ] },
+];
+if (d.faq.length) schema.push({ "@type": "FAQPage", mainEntity: d.faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) });
+const toc = headings.filter((h) => h.depth === 2);
+---
+<Base title={`${d.title} | Praxisporto`} description={d.description} schema={schema} ogType="article">
+  <article>
+    <header class="herobox pad">
+      <div class="wrap stack" style="max-width:46rem">
+        <nav class="crumbs" aria-label="Brotkrumen"><a href="/ratgeber/">Ratgeber</a><span aria-hidden="true">/</span><span>{d.category}</span></nav>
+        <h1>{d.title}</h1>
+        <p class="lead">{d.description}</p>
+        <p class="meta">{d.updated ? `Aktualisiert am ${date(d.updated)}` : `Veröffentlicht am ${date(d.published)}`} · {d.minutes} Min. Lesezeit</p>
+      </div>
+    </header>
+    <div class="sec tight">
+      <div class="wrap prose">
+        {toc.length > 2 && <nav class="toc" aria-label="Inhalt">{toc.map((h) => <a href={`#${h.slug}`}>{h.text}</a>)}</nav>}
+        <Content />
+        {d.faq.length > 0 && (
+          <>
+            <h2 id="fragen">Häufige Fragen</h2>
+            <div class="faq">{d.faq.map((f) => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}</div>
+          </>
+        )}
+        <div class="card" style="margin-top:3rem">
+          <h3>Porto und Adresse auf einem Etikett</h3>
+          <p>Praxisporto übernimmt die Adresse aus dem PVS und druckt die INTERNETMARKE direkt mit. Probieren Sie es mit Beispielaufträgen aus.</p>
+          <DemoActions />
+        </div>
+      </div>
+    </div>
+  </article>
+  <section class="sec tint">
+    <div class="wrap"><div class="head"><h2>Weitere Beiträge</h2></div><ArticleCards limit={3} exclude={post.id} /></div>
+  </section>
+  <Cta />
+</Base>

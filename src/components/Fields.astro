@@ -1,0 +1,13 @@
+---
+import Icon from "./Icon.astro";
+import { FIELDS } from "../data/fields";
+interface Props { exclude?: string; title?: string }
+const { exclude, title = "Für jede Praxis die passende Post." } = Astro.props;
+const list = FIELDS.filter((f) => f.slug !== exclude);
+---
+<section class="sec">
+  <div class="wrap">
+    <div class="head center"><span class="eyebrow">Für Ihre Fachrichtung</span><h2>{title}</h2></div>
+    <div class={list.length === 3 ? "grid3" : "grid2"}>{list.map((f) => <a class="card link" href={`/loesungen/${f.slug}/`}><span class={`ic ${f.tone}`}><Icon name={f.icon} /></span><h3>{f.name}</h3><p>{f.short}</p><span class="link" style="margin-top:.2rem">Mehr erfahren <Icon name="arrow" /></span></a>)}</div>
+  </div>
+</section>

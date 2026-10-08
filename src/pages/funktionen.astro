@@ -1,0 +1,39 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import DemoActions from "../components/DemoActions.astro";
+import AppWindow from "../components/mocks/AppWindow.astro";
+import Scenes from "../components/Scenes.astro";
+import Benefits from "../components/Benefits.astro";
+import Privacy from "../components/Privacy.astro";
+import Icon from "../components/Icon.astro";
+import Faq from "../components/Faq.astro";
+import Cta from "../components/Cta.astro";
+import { pick } from "../data/faq";
+const faq = pick("install", "printer", "pvs", "misprint", "refund");
+const more = [
+  { icon: "users", title: "Mehrere Arbeitsplätze", text: "Jeder Praxis-PC wird einmal mit einem Kopplungscode verbunden. Alle nutzen dieselbe Portokasse." },
+  { icon: "lock", title: "Rollen und Limits", text: "Die Praxisleitung legt fest, wer wie viel Porto am Tag drucken darf, je Person und je Arbeitsplatz." },
+  { icon: "plug", title: "GDT-Schnittstelle", text: "Funktioniert mit jedem PVS, das Patientendaten als GDT-Datei ablegen kann." },
+  { icon: "mail", title: "Einschreiben", text: "Einschreiben, Einschreiben Einwurf und Einschreiben mit Rückschein, mit dem passenden Etikett." },
+  { icon: "printer", title: "Etikettendrucker", text: "Brother QL, Dymo LabelWriter und Zebra. Die Etikettengröße wählen Sie aus einer Liste." },
+  { icon: "refresh", title: "Fehldruck", text: "Dieselbe Marke wird noch einmal gedruckt. Nie gedruckte Marken werden nach sieben Tagen erstattet." },
+] as const;
+---
+<Base title="Funktionen: Porto und Adresse auf einem Etikett | Praxisporto" description="Adresse aus dem PVS, alle Briefformate und Einschreiben, Etikettendruck, Tageslimits und Druckprotokoll: alle Funktionen von Praxisporto im Überblick.">
+  <PageHero eyebrow="Funktionen" title="Alles, was die Praxispost braucht. Mehr nicht." lead="Praxisporto übernimmt die Adresse aus dem PVS, kauft die INTERNETMARKE und druckt Porto und Anschrift auf ein Etikett.">
+    <DemoActions />
+    <AppWindow slot="visual" />
+  </PageHero>
+  <Scenes />
+  <section class="sec">
+    <div class="wrap">
+      <div class="head center"><span class="eyebrow">Im Detail</span><h2>Gemacht für den Alltag am Tresen.</h2></div>
+      <div class="grid3">{more.map((m) => <div class="card"><span class="ic"><Icon name={m.icon} /></span><h3>{m.title}</h3><p>{m.text}</p></div>)}</div>
+    </div>
+  </section>
+  <Benefits />
+  <Privacy />
+  <Faq items={faq} />
+  <Cta />
+</Base>

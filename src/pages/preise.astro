@@ -1,0 +1,53 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import Icon from "../components/Icon.astro";
+import Faq from "../components/Faq.astro";
+import Cta from "../components/Cta.astro";
+import { PLANS, INCLUDED } from "../data/pricing";
+import { CONTACT_MAIL } from "../config";
+import { pick } from "../data/faq";
+const faq = pick("price", "post", "refund", "demo");
+const porto = [
+  ["Standardbrief", "bis 20 g", "0,95 €"],
+  ["Kompaktbrief", "bis 50 g", "1,10 €"],
+  ["Großbrief", "bis 500 g", "1,80 €"],
+  ["Maxibrief", "bis 1.000 g", "2,90 €"],
+  ["Postkarte", "", "0,95 €"],
+];
+---
+<Base title="Preise | Praxisporto" description="Praxisporto wird monatlich je Praxis abgerechnet, das Porto zahlen Sie direkt über Ihre Portokasse der Deutschen Post. Pakete für Einzelpraxis, Praxisteam und MVZ.">
+  <PageHero eyebrow="Preise" title="Ein fester Betrag im Monat. Das Porto zahlen Sie direkt." lead="Praxisporto wird je Praxis abgerechnet. Das Porto geht über Ihre Portokasse an die Deutsche Post, ohne Aufschlag." />
+  <section class="sec">
+    <div class="wrap stack" style="gap:2.4rem">
+      <div class="grid3">
+        {PLANS.map((p) => (
+          <div class={`card${p.highlight ? " white shadow" : ""}`} style={p.highlight ? "outline:2px solid var(--primary)" : ""}>
+            {p.highlight && <span class="pill" style="align-self:flex-start">Beliebt</span>}
+            <h3>{p.name}</h3>
+            <p class="meta">{p.seats}</p>
+            <p style="font-family:var(--fd);font-size:1.8rem;font-weight:800;color:var(--ink)">{p.price ?? "auf Anfrage"}{p.price && p.unit && <span class="meta"> {p.unit}</span>}</p>
+            <ul class="checks">{INCLUDED.map((i) => <li><Icon name="check" />{i}</li>)}</ul>
+            {p.cta === "demo"
+              ? <a class="btn sm" href="/demo/" data-demo style="margin-top:auto">Demo ausprobieren</a>
+              : CONTACT_MAIL
+                ? <a class="btn ghost sm" href={`mailto:${CONTACT_MAIL}?subject=Praxisporto%20f%C3%BCr%20MVZ`} style="margin-top:auto">Kontakt aufnehmen</a>
+                : <a class="btn ghost sm" href="/demo/" data-demo style="margin-top:auto">Demo ausprobieren</a>}
+          </div>
+        ))}
+      </div>
+      <p class="micro center">Alle Preise zuzüglich Umsatzsteuer. Das Porto ist nicht enthalten.</p>
+    </div>
+  </section>
+  <section class="sec tint">
+    <div class="wrap split">
+      <div class="stack"><span class="eyebrow">Porto</span><h2>Das Porto zahlen Sie zum Preis der Post.</h2><p class="lead">Praxisporto schlägt nichts auf. Bezahlt wird über Ihre Portokasse bei der Deutschen Post.</p><a class="link" href="/ratgeber/porto-2026/">Alle Portopreise 2026 <Icon name="arrow" /></a></div>
+      <div class="card white">
+        <table class="prose" style="margin:0;max-width:none"><thead><tr><th>Format</th><th>Gewicht</th><th>Porto</th></tr></thead><tbody>{porto.map((r) => <tr><td>{r[0]}</td><td>{r[1]}</td><td><b>{r[2]}</b></td></tr>)}</tbody></table>
+        <p class="micro">Inland, Stand 1. Januar 2026.</p>
+      </div>
+    </div>
+  </section>
+  <Faq items={faq} />
+  <Cta />
+</Base>

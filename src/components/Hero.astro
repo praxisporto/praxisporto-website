@@ -1,0 +1,43 @@
+---
+// Start page hero: promise, sign-up and a product picture you can click through.
+import Icon from "./Icon.astro";
+import HeroSignup from "./HeroSignup.astro";
+import LinkForm from "./LinkForm.astro";
+import LabelMock from "./mocks/LabelMock.astro";
+---
+<section class="herobox start">
+  <div class="wrap">
+    <div class="stack center hero-top">
+      <img class="hero-mascot" src="/brand/icon-voll.svg" alt="" width="256" height="256" />
+      <h1>Ein Brief frankiert in drei Klicks.</h1>
+      <p class="lead only-desktop">Probieren Sie es sofort selbst aus: ohne Termin, ohne Telefonat.</p>
+      <p class="lead only-mobile">Selbst ausprobieren, ohne Termin und ohne Telefonat.</p>
+      <div class="only-desktop hero-signup"><HeroSignup /><p class="micro field-note">Kostenlos, ohne Zahlungsdaten. Mit dem Start gelten die <a href="/nutzungsbedingungen/">Nutzungsbedingungen</a> und die <a href="/datenschutz/">Datenschutzerklärung</a>.</p></div>
+      <div class="only-mobile hero-signup"><LinkForm id="hero-link" /><p class="micro field-note">Kostenlos, ohne Zahlungsdaten.</p><a class="link" href="/demo-am-computer/#rundgang">Oder erst den Rundgang ansehen <Icon name="arrow" /></a></div>
+      <div class="chips"><span class="chip"><Icon name="lock" />Server in Frankreich</span><span class="chip"><Icon name="shield" />Adressen bleiben am Praxis-PC</span><span class="chip"><Icon name="plug" />GDT-Schnittstelle zum PVS</span><span class="chip"><Icon name="clock" />Beschleunigt den Praxisbetrieb</span></div>
+      <a class="scroll-cue" href="#so-sieht-es-aus" aria-label="Zur Vorschau der App"><span>So sieht es aus</span><Icon name="arrow" /></a>
+    </div>
+    <div class="hero-stage" id="so-sieht-es-aus" data-demo-stage data-s="0">
+      <div class="appwin shadow" aria-hidden="true">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <div class="body">
+          <div class="side"><b>+</b><span class="on"><u style="width:70%"></u></span><span><u style="width:55%"></u></span><span><u style="width:62%"></u></span></div>
+          <div class="main">
+            <div class="hd"><strong><span class="n0">Kein Auftrag offen</span><span class="n1">Erika Mustermann</span></strong><em></em></div>
+            <div class="fields"><span><u style="width:45%"></u></span><span class="half"><u style="width:60%"></u></span><span class="half"><u style="width:40%"></u></span></div>
+            <div class="pills"><span class="on">Standardbrief · 0,95 €</span><span></span><span></span></div>
+            <div class="act"><span class="buy">Kaufen &amp; drucken</span><span class="ghost"></span><span class="ghost drop"></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-ctl">
+        <button type="button" class="btn demo-go" data-demo-next><span data-demo-label>1 · Auftrag öffnen</span><Icon name="arrow" /></button>
+        <button type="button" class="btn sm demo-cta" data-demo-cta hidden>Jetzt selbst ausprobieren</button>
+        <span class="micro" role="status" aria-live="polite" data-demo-note>Kein Auftrag offen.</span>
+      </div>
+      <div class="float"><LabelMock /></div>
+    </div>
+  </div>
+</section>
+<div class="hero-after"></div>
+<script src="../scripts/hero-demo.ts"></script>

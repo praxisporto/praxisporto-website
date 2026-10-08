@@ -1,0 +1,34 @@
+---
+import Base from "../layouts/Base.astro";
+import SignupForm from "../components/SignupForm.astro";
+import Icon from "../components/Icon.astro";
+import Faq from "../components/Faq.astro";
+import { pick } from "../data/faq";
+const faq = pick("demo", "install", "post", "phone");
+const next = [
+  ["mail", "E-Mail bestätigen", "Sie bekommen einen Link, der Ihre Adresse bestätigt."],
+  ["file", "Beispielaufträge öffnen", "Eine Beispielpraxis mit Patienten ist schon angelegt."],
+  ["printer", "Etiketten drucken", "Auf Ihrem Drucker oder als Vorschau, ohne echte Marken."],
+] as const;
+---
+<Base banner={false} title="Demo ausprobieren | Praxisporto" description="Praxisporto kostenlos ausprobieren: Beispielaufträge öffnen, Etiketten drucken und die Verwaltung ansehen. Ohne Installation, echte Käufe finden nicht statt.">
+  <section class="herobox pad">
+    <div class="wrap split top">
+      <div class="stack">
+        <span class="eyebrow">Demo, sofort und ohne Termin</span>
+        <h1>Probieren Sie Praxisporto in Ruhe aus.</h1>
+        <p class="lead">Die Demo ist kostenlos. Kein Vorführtermin, kein Telefonat: Sie probieren selbst aus, wann es Ihnen passt. Eine Beispielpraxis ist schon eingerichtet. Sie öffnen Aufträge, drucken Etiketten und sehen sich die Verwaltung an. Echte Marken werden nicht gekauft.</p>
+        <ol class="stack" style="list-style:none;padding:0;gap:1rem;margin-top:.6rem">
+          {next.map(([icon, title, text], i) => <li style="display:flex;gap:1rem;align-items:flex-start"><span class={`ic ${["", "coral", "petrol"][i]}`}><Icon name={icon} /></span><span><b>{title}</b><br /><span class="meta">{text}</span></span></li>)}
+        </ol>
+      </div>
+      <div class="card white shadow only-desktop" style="flex-direction:column"><SignupForm /></div>
+      <div class="card white only-mobile" style="flex-direction:column;align-items:flex-start">
+        <h2 style="font-size:1.3rem">Die Demo braucht den Praxis-PC.</h2>
+        <p>Auf dem Handy zeigen wir Ihnen einen Rundgang, und wir schicken Ihnen den Link für den Computer.</p>
+        <a class="btn" href="/demo-am-computer/">Weiter</a>
+      </div>
+    </div>
+  </section>
+  <Faq items={faq} />
+</Base>

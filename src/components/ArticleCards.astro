@@ -1,0 +1,23 @@
+---
+// Ratgeber articles as cards, newest first.
+import Icon from "./Icon.astro";
+import { getCollection } from "astro:content";
+interface Props { limit?: number; exclude?: string }
+const { limit, exclude } = Astro.props;
+const posts = (await getCollection("ratgeber")).filter((p) => p.id !== exclude).sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
+const list = limit ? posts.slice(0, limit) : posts;
+const tones = [
+  "background:var(--card2);color:var(--primary)",
+  "background:var(--coral-soft);color:var(--accent)",
+  "background:var(--petrol-soft);color:var(--petrol)",
+];
+---
+<div class="grid3">
+  {list.map((p, i) => (
+    <a class="card white link" href={`/ratgeber/${p.id}/`}>
+      <div class="thumb" style={tones[i % 3]}><Icon name={p.data.icon} /></div>
+      <span class="meta">{p.data.category} · {p.data.minutes} Min. Lesezeit</span>
+      <h3>{p.data.title}</h3>
+    </a>
+  ))}
+</div>

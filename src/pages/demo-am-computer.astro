@@ -1,0 +1,35 @@
+---
+import Base from "../layouts/Base.astro";
+import Tour from "../components/Tour.astro";
+import LinkForm from "../components/LinkForm.astro";
+import SignupForm from "../components/SignupForm.astro";
+---
+<Base banner={false} title="Demo am Computer öffnen | Praxisporto" description="Praxisporto ist für den Praxis-PC gemacht. Sehen Sie sich den Rundgang an und lassen Sie sich den Demo-Link per E-Mail schicken.">
+  <section class="herobox pad">
+    <div class="wrap stack" style="gap:1.2rem;max-width:40rem">
+      <span class="eyebrow">Demo</span>
+      <h1>Die Demo zeigt ihre Stärken am Praxis-PC.</h1>
+      <p class="lead">Am Tresen kommen die Aufträge aus dem PVS und die Etiketten aus dem Drucker. Hier sehen Sie vorab, wie das aussieht.</p>
+    </div>
+  </section>
+  <section class="sec tight">
+    <div class="wrap split top">
+      <div class="stack"><span class="eyebrow">Rundgang</span><h2>In drei Schritten durch Praxisporto.</h2><Tour /></div>
+      <div class="stack" id="link">
+        <span class="eyebrow">Demo-Link</span>
+        <h2>Den Link schicken wir Ihnen.</h2>
+        <p>Öffnen Sie die E-Mail später am Praxis-PC und starten Sie die Demo von dort.</p>
+        <LinkForm />
+        <div class="mail" aria-label="So sieht die E-Mail aus" role="img">
+          <div class="from">Von: Praxisporto · Betreff: Ihr Link zur Demo</div>
+          <strong>Ihre Demo wartet am Praxis-PC.</strong>
+          <p class="meta">Öffnen Sie diesen Link am Computer, um die Demo zu starten.</p>
+          <span class="btn sm" style="margin-top:.8rem;pointer-events:none">Demo öffnen</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="sec tint only-desktop">
+    <div class="wrap" style="max-width:34rem"><div class="card white shadow"><SignupForm id="pc" /></div></div>
+  </section>
+</Base>

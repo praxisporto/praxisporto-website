@@ -1,0 +1,69 @@
+---
+// Page frame: SEO head (title, description, canonical, Open Graph, structured data),
+// navigation, footer. One H1 per page lives in the page itself.
+import "@fontsource/plus-jakarta-sans/600.css";
+import "@fontsource/plus-jakarta-sans/700.css";
+import "@fontsource/plus-jakarta-sans/800.css";
+import "@fontsource/dm-sans/400.css";
+import "@fontsource/dm-sans/500.css";
+import "@fontsource/dm-sans/700.css";
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import TopBanner from "../components/TopBanner.astro";
+import { SITE, ANALYTICS_DOMAIN, ANALYTICS_SRC } from "../config";
+
+interface Props {
+  title: string;
+  description: string;
+  /** Structured data (schema.org objects), added to the Organization/WebSite data. */
+  schema?: object[];
+  noindex?: boolean;
+  ogType?: "website" | "article";
+  /** Slim demo banner under the navigation (inner pages). */
+  banner?: boolean;
+}
+const { title, description, schema = [], noindex = false, ogType = "website", banner = true } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL("/og-image.png", Astro.site);
+const base = [
+  { "@context": "https://schema.org", "@type": "Organization", name: SITE.name, url: Astro.site?.toString(), logo: new URL("/android-chrome-512x512.png", Astro.site).toString() },
+];
+const data = [...base, ...schema.map((s) => ({ "@context": "https://schema.org", ...s }))];
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content={SITE.locale} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#1F4E9E" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    {ANALYTICS_DOMAIN && <script defer data-domain={ANALYTICS_DOMAIN} src={ANALYTICS_SRC}></script>}
+    <script type="application/ld+json" set:html={JSON.stringify(data.length === 1 ? data[0] : data)} />
+  </head>
+  <body>
+    <a class="skip" href="#inhalt">Zum Inhalt springen</a>
+    <Nav />
+    {banner && <TopBanner />}
+    <main id="inhalt"><slot /></main>
+    <Footer />
+  </body>
+</html>

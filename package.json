@@ -1,0 +1,26 @@
+{
+  "name": "praxisporto-website",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Website von Praxisporto (statisch, Astro)",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "start": "node server.mjs",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/plus-jakarta-sans": "^5.3.0",
+    "astro": "^5.18.2",
+    "sirv": "^3.0.2",
+    "typescript": "^5.9.3"
+  }
+}

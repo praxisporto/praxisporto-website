@@ -1,0 +1,16 @@
+---
+import Icon from "./Icon.astro";
+const steps = [
+  { icon: "file", tone: "", title: "Auftrag öffnen", text: "Das PVS übergibt den Patientendatensatz, Praxisporto öffnet den Auftrag mit der Adresse." },
+  { icon: "euro", tone: "coral", title: "Format wählen", text: "Standard- bis Maxibrief, Einschreiben oder Rückschein. Der Preis steht dabei." },
+  { icon: "printer", tone: "petrol", title: "Etikett drucken", text: "Marke und Adresse auf einem Etikett. Aufkleben, fertig." },
+] as const;
+---
+<section class="sec" id="so-funktionierts">
+  <div class="wrap">
+    <div class="head center"><span class="eyebrow">So funktioniert’s</span><h2>In drei Schritten zum frankierten Brief.</h2></div>
+    <ol class="grid3" style="list-style:none;padding:0">
+      {steps.map((s, i) => <li class="card"><span class={`ic ${s.tone}`}><Icon name={s.icon} /></span><span class="eyebrow" style="margin-top:.4rem">Schritt {i + 1}</span><h3>{s.title}</h3><p>{s.text}</p></li>)}
+    </ol>
+  </div>
+</section>

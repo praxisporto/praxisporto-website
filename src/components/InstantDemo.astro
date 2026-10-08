@@ -1,0 +1,19 @@
+---
+// Demo instead of a sales call: the closing sign-up block of the start page.
+import Icon from "./Icon.astro";
+import SignupForm from "./SignupForm.astro";
+import LinkForm from "./LinkForm.astro";
+const call = ["Termin abstimmen", "Telefonat oder Videocall", "Fragen sammeln und nachfragen"];
+const demo = ["E-Mail eintragen, sofort loslegen", "Beispielpraxis ist schon eingerichtet", "Selbst drucken, in Ruhe entscheiden"];
+---
+<section class="sec" id="demo-starten">
+  <div class="wrap">
+    <div class="head center"><span class="eyebrow">Demo</span><h2>Statt Vorführung: ausprobieren, wann Sie wollen.</h2></div>
+    <div class="grid2">
+      <div class="card"><h3>Typische Produktvorführung</h3><ul class="vs no">{call.map((t) => <li><Icon name="close" />{t}</li>)}</ul></div>
+      <div class="card white pick"><h3>Praxisporto-Demo</h3><ul class="vs yes">{demo.map((t) => <li><Icon name="check" />{t}</li>)}</ul></div>
+    </div>
+    <div class="instant-form only-desktop" style="margin-top:2.4rem"><div class="card white shadow"><SignupForm id="instant" /></div></div>
+    <div class="instant-form only-mobile" style="margin-top:2.4rem;flex-direction:column"><LinkForm id="instant-link" /></div>
+  </div>
+</section>
