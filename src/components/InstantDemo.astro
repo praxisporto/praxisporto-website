@@ -13,7 +13,7 @@ const demo = ["E-Mail eintragen, sofort loslegen", "Beispielpraxis ist schon ein
       <div class="card"><h3>Typische Produktvorführung</h3><ul class="vs no">{call.map((t) => <li><Icon name="close" />{t}</li>)}</ul></div>
       <div class="card white pick"><h3>Praxisporto-Demo</h3><ul class="vs yes">{demo.map((t) => <li><Icon name="check" />{t}</li>)}</ul></div>
     </div>
-    <div class="instant-form only-desktop" style="margin-top:2.4rem"><div class="card white shadow"><SignupForm id="instant" /></div></div>
-    <div class="instant-form only-mobile" style="margin-top:2.4rem;flex-direction:column"><LinkForm id="instant-link" /></div>
+    <div class="instant-form only-desktop" style="margin-top:2.4rem"><div class="card white shadow"><SignupForm id="instant" source="instant" /></div></div>
+    <div class="instant-form only-mobile" style="margin-top:2.4rem;flex-direction:column"><LinkForm id="instant-link" source="instant" /></div>
   </div>
 </section>

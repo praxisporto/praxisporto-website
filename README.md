@@ -32,10 +32,9 @@ Build-time variables, see `.env.example`:
 | --- | --- |
 | `SITE_URL` | Public address (canonical, sitemap, robots.txt, Open Graph) |
 | `PUBLIC_APP_URL` | App address for the "Anmelden" link |
-| `PUBLIC_DEMO_SIGNUP_URL` | Endpoint for the demo sign-up, `POST {"email"}` |
-| `PUBLIC_DEMO_LINK_URL` | Endpoint for "Demo-Link per E-Mail", `POST {"email"}` |
 | `PUBLIC_ANALYTICS_DOMAIN` | Domain für die cookie-freie Messung (Plausible). Leer: kein Skript, keine Ereignisse. In die Datenschutzerklärung aufnehmen. |
 | `PUBLIC_ANALYTICS_SRC` | Optional: eigene Adresse des Skripts (z. B. selbst gehostet) |
+| `PUBLIC_DEMO_REQUEST_URL` | Optional. Endpoint for demo requests, `POST {"email", "device", "source"}`. Default: `{PUBLIC_APP_URL}/api/v1/public/demo-requests`. The app must list the website in `SITE_ORIGINS` (CORS). |
 | `PUBLIC_CONTACT_MAIL` | Contact address (footer, MVZ package). Empty: not shown. |
 
 ## Deploy on Scalingo
@@ -44,8 +43,8 @@ Separate Scalingo app with the Node.js buildpack. Scalingo runs `npm run build` 
 
 ## Before going live
 
-- **Backend endpoints are missing.** The demo sign-up and the demo-link mail need two endpoints in the Praxisporto backend (with CORS for the website domain, rate limit and double opt-in). Until `PUBLIC_DEMO_SIGNUP_URL` / `PUBLIC_DEMO_LINK_URL` are set, the forms say that they are not connected yet.
-- **Legal texts:** `impressum`, `datenschutz`, `nutzungsbedingungen` are placeholders with `noindex` and are not in the sitemap.
+- **Demo requests** go to the app backend (`/api/v1/public/demo-requests`), which mails the link via Brevo. The app needs `SITE_ORIGINS` with the website address and `MAIL_BREVO_API_KEY`, see the app repository (`docs/ablaeufe.md, "Demo-Anmeldung von der Website"`).
+- **Legal texts:** `impressum`, `datenschutz`, `nutzungsbedingungen`, `agb`, `av-vertrag` are placeholders with `noindex` and are not in the sitemap.
 - **Prices:** `src/data/pricing.ts` has `price: null`, shown as "auf Anfrage".
 - **Customer voices and case studies:** `src/data/proof.ts` is empty, so the quote section stays hidden. Only add real, approved statements.
 - **Review the articles.** The Ratgeber articles were written from the Deutsche Post price list (1 January 2026) and the product's behaviour. Have them checked for accuracy, especially data protection, Einschreiben and recall. The data protection and recall articles say they are not legal advice.

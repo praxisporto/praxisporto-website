@@ -10,11 +10,9 @@ export const SITE = {
 /** Login of the Praxisporto app (administration). */
 export const APP_URL: string = import.meta.env.PUBLIC_APP_URL ?? "https://app.praxisporto.de";
 
-/** Backend endpoint for the demo sign-up. Empty: the form explains that it is not connected yet. */
-export const DEMO_SIGNUP_URL: string = import.meta.env.PUBLIC_DEMO_SIGNUP_URL ?? "";
-
-/** Backend endpoint that mails the demo link (phones). Empty: the form explains that it is not connected yet. */
-export const DEMO_LINK_URL: string = import.meta.env.PUBLIC_DEMO_LINK_URL ?? "";
+/** Backend endpoint for demo requests (sign-up and "Demo-Link per E-Mail"): `POST {email, device, source}`.
+ *  Default: the public endpoint of the app. Empty: the form explains that it is not connected yet. */
+export const DEMO_REQUEST_URL: string = import.meta.env.PUBLIC_DEMO_REQUEST_URL || `${APP_URL}/api/v1/public/demo-requests`;
 
 /** Cookie-free analytics (Plausible). Empty domain: no tracking script is added. */
 export const ANALYTICS_DOMAIN: string = import.meta.env.PUBLIC_ANALYTICS_DOMAIN ?? "";

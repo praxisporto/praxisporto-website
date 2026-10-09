@@ -1,8 +1,8 @@
 ---
 // Hero sign-up: just the e-mail address. Same endpoint as the demo page.
-import { DEMO_SIGNUP_URL } from "../config";
+import { DEMO_REQUEST_URL } from "../config";
 ---
-<form class="stack hero-form" data-signup data-endpoint={DEMO_SIGNUP_URL} novalidate>
+<form class="stack hero-form" data-signup data-endpoint={DEMO_REQUEST_URL} data-device="desktop" data-source="hero" novalidate>
   <div class="inline-form">
     <label class="sr-only" for="hero-email">E-Mail der Praxis</label>
     <input id="hero-email" name="email" type="email" autocomplete="email" placeholder="E-Mail der Praxis" required maxlength="254" />

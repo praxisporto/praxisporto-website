@@ -10,6 +10,6 @@ export default defineConfig({
   trailingSlash: "always",
   build: { format: "directory", inlineStylesheets: "auto" },
   // Legal pages are not finished yet; they stay out of the sitemap until they are.
-  integrations: [sitemap({ filter: (page) => !/\/(impressum|datenschutz|nutzungsbedingungen)\//.test(page) })],
+  integrations: [sitemap({ filter: (page) => !/\/(impressum|datenschutz|nutzungsbedingungen|agb|av-vertrag)\//.test(page) })],
   compressHTML: true,
 });
