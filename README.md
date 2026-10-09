@@ -37,6 +37,10 @@ Build-time variables, see `.env.example`:
 | `PUBLIC_DEMO_REQUEST_URL` | Optional. Endpoint for demo requests, `POST {"email", "device", "source"}`. Default: `{PUBLIC_APP_URL}/api/v1/public/demo-requests`. The app must list the website in `SITE_ORIGINS` (CORS). |
 | `PUBLIC_CONTACT_MAIL` | Contact address (footer, MVZ package). Empty: not shown. |
 
+## Deploy on Netlify
+
+`netlify.toml` holds everything: build (`npm run build`, Node 22), publish directory `dist/`, `SITE_URL=https://praxisporto.de` and `PUBLIC_APP_URL=https://app.praxisporto.de`, the 301 redirect from `www.praxisporto.de` to `praxisporto.de`, and the headers of `server.mjs`. In Netlify, add both domains (`praxisporto.de` as primary, `www.praxisporto.de`). Optional variables (contact mail, analytics) go in the site settings under Environment variables; values there are overridden by `netlify.toml`, so change `SITE_URL` and `PUBLIC_APP_URL` in the file. `server.mjs` and the `Procfile` are only for Scalingo.
+
 ## Deploy on Scalingo
 
 Separate Scalingo app with the Node.js buildpack. Scalingo runs `npm run build` automatically, the `Procfile` starts `node server.mjs` on `$PORT`. Set the variables above in the app environment. The site needs no database: sign-up runs through the backend of the Praxisporto app.

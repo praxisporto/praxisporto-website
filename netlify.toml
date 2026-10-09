@@ -1,0 +1,35 @@
+# Netlify: builds the static site (Astro) and serves dist/. Unknown paths get
+# dist/404.html with status 404 (Netlify does that by itself).
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  # Public address of the website (canonical links, sitemap, Open Graph).
+  SITE_URL = "https://praxisporto.de"
+  # App, administration and server (login link, demo requests).
+  PUBLIC_APP_URL = "https://app.praxisporto.de"
+
+# One address for the website: www goes to praxisporto.de (path kept).
+[[redirects]]
+  from = "https://www.praxisporto.de/*"
+  to = "https://praxisporto.de/:splat"
+  status = 301
+  force = true
+
+# The same headers as server.mjs. Pages keep Netlify's own caching (always
+# revalidated, a new deploy counts at once); a second Cache-Control here would
+# be combined with the one below.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Hashed build files never change.
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
